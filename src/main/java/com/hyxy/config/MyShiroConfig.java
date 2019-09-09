@@ -23,12 +23,12 @@ public class MyShiroConfig {
 		// 未登录跳转到的页面或url，如果不设置默认会自动寻找Web工程根目录下的"/login.jsp"页面
 		shiroFilterFactoryBean.setLoginUrl("/login.jsp");
 		// 未授权跳转到的页面或url
-//      shiroFilterFactoryBean.setUnauthorizedUrl("/unauthor.jsp");
+		shiroFilterFactoryBean.setUnauthorizedUrl("/unauthor.jsp");
 
 		// 添加shiro内置过滤器
 		Map<String, String> map = new LinkedHashMap<String, String>();
 		// 配置不需要验证过滤器
-		map.put("/", "anon");
+//		map.put("/", "anon");
 		map.put("/LoginContoller/login", "anon");
 		map.put("/css/**", "anon");
 		map.put("/js/**", "anon");
@@ -36,19 +36,31 @@ public class MyShiroConfig {
 		map.put("/font/**", "anon");
 		map.put("/images/**", "anon");
 		map.put("/error", "anon");
+//		map.put("/unauthor.jsp", "anon");
 
 		// 需要登录验证的过滤器
-//      map.put("/admin", "authc");
+		//      map.put("/admin", "authc");
 
 		// 角色授权过滤器,必须拥有该角色才能访问,多个参数时写 roles["admin,user"]
 		/*
-		 * map.put("/student", "roles[teacher]");
 		 * 
-		 * // 权限授权过滤器,必须拥有该权限，才能访问 map.put("/teacher", "perms[student:create]");
+		 * 
+		 * // 权限授权过滤器,必须拥有该权限，才能访问 
 		 */
-
+//		map.put("/student", "add");
+//		map.put("/teacher", "select");
 		// 主要这行代码必须放在所有权限设置的最后，不然会导致所有 url 都被拦截
 		// 保证除定义url外的所有url都必须是已登录的
+
+
+		// 角色授权过滤器,必须拥有该角色才能访问,多个参数时写 roles["admin,user"]
+//	      map.put("/student", "roles[管理员]");
+//	      map.put("/teacher", "roles[编辑员]");
+	      
+	      // 权限授权过滤器,必须拥有该权限，才能访问
+//	      map.put("/add", "perms[add]");
+//	      map.put("/select", "perms[select]");
+	      
 		map.put("/**", "user");
 
 		shiroFilterFactoryBean.setFilterChainDefinitionMap(map);

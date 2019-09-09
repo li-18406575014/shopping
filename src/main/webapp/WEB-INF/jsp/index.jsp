@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"  %>
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -60,6 +61,7 @@
         </ul>
     </li>
    </c:forEach> --%>
+   <shiro:user>
    <li>
         <a>
             <span class="iconfont icon-shangpinguanli"></span>
@@ -69,7 +71,7 @@
         </a>
         <ul>
             <li>
-                <a href="<%=request.getContextPath() %>/CommodityAdd/goToCommodityAdd" target="right">
+                <a href="<%=request.getContextPath() %>/ItemAddController/skip" target="right">
                     <span>商品新增</span>
                 </a>
             </li>
@@ -100,6 +102,7 @@
             </li>
         </ul>
     </li>
+    </shiro:user>
     <li>
         <a>
             <span class="iconfont icon-dingdanguanli"></span>

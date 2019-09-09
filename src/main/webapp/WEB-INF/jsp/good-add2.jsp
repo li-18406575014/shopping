@@ -28,20 +28,20 @@ $(function(){
 	<div class="box">
 		<div class="control-group control-group1">
 			<label class="control-label"><s>*</s>图片：</label>
-			<c:if test="${banner.imgname==null }">
+			<c:if test="${banner.url==null }">
 				<img src="<%=request.getContextPath()%>/img/ig.png" id="yushow"
 					class="sh2" />
 			</c:if>
 
-			<c:if test="${banner.imgname !=null }">
-				<img src="<%=request.getContextPath() %>/file/${banner.imgname}"
+			<c:if test="${banner.url !=null }">
+				<img src="<%=request.getContextPath() %>/file/${banner.url}"
 					id="yushow" class="sh2" />
 			</c:if>
 
 		</div>
-		<form action="" id="form_2" method="post" enctype="multipart/form-data">
+		<form action="<%=request.getContextPath() %>/ItemAddController/updataId" id="form_2" method="post" enctype="multipart/form-data">
 			<input type="text"  id="file" value="上传一个文件" >
-			<input type="text" id="imgname"  value="${banner.imgname }"
+			<input type="text" id="imgname"  value="${banner.url }"
 				name="imgname"> <input type="text" id="id"
 				value="${banner.id }" name="id"> <input type="file"
 				class="jtt" name="banner" style="background: #880000;">
@@ -52,7 +52,7 @@ $(function(){
 				</div>
 				<div class="control-group">
 					<label class="control-label">教练介绍：</label> <input type="text"
-						name="title" class="control-text" value="${banner.title }">
+						name="title" class="control-text" value="${banner.jieshao }">
 				</div>
 				<%-- <div class="control-group">
 					<label class="control-label">序号：</label> <input type="text"
@@ -76,6 +76,9 @@ $(function(){
 			<div class="btn" id="submit">
 				<span>添加</span>
 			</div>
+			<div class="btn" id="submit">
+        <span><input type="submit" value="修改"></span>
+    </div>
 		</form>
 	</div>
 	${page }
@@ -84,13 +87,13 @@ $(function(){
     $(document).ready(function(){
     	 $('#submit').eq(0).click(function(){
                  $.ajax({
-                    url:'<%=request.getContextPath()%>/CommodityAdd/addIncreased',
+                    url:'<%=request.getContextPath()%>/ItemAddController/addIncreased',
                     type:"POST",
                     data:$('#form_2').serialize(),
                     dataType:"json",
                     success: function(data) {
                         if(data.message=="成功"){
-                            window.location.href="<%=request.getContextPath()%>/CommodityAdd/goToCommodityAdd";
+                            window.location.href="<%=request.getContextPath()%>/ItemAddController/skip";
                         }else{
                             $('#pos2').css({'display':'block'});
                             $('#pos1').addClass('dis-none');
@@ -114,7 +117,7 @@ $(function(){
             
             var formData = new FormData($("#form_2")[0]);
             $.ajax({
-               url : '<%=request.getContextPath()%>/CommodityAdd/imgPreview',
+               url : '<%=request.getContextPath()%>/ItemAddController/imgPreview',
                type : "POST",
                data : formData,
                dataType : "json",

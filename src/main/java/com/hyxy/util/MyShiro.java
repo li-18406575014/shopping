@@ -7,6 +7,7 @@ import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authz.AuthorizationInfo;
+import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 
@@ -17,9 +18,20 @@ public class MyShiro extends  AuthorizingRealm{
 
 	@Resource
 	private UserService UserService;
+	
+	//用户权限验证
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-		return null;
+		String username = (String) principals.getPrimaryPrincipal();
+		// 获取到当前登录用户的认证信息
+	      SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
+	      // 给用户授权角色
+	      authorizationInfo.setRoles(UserService.getRole(username));
+	   // 给用户授权权限
+	      authorizationInfo.setStringPermissions(UserService.getPermissions(username));
+	      System.out.println(UserService.getRole(username));
+	      System.out.println(UserService.getPermissions(username));
+	      return authorizationInfo;
 	}
 
 	//用户登录验证

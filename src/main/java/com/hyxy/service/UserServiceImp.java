@@ -1,6 +1,7 @@
 package com.hyxy.service;
 
 import java.util.Map;
+import java.util.Set;
 
 import javax.annotation.Resource;
 
@@ -27,5 +28,17 @@ public class UserServiceImp implements UserService {
 	public Userxx getUserName(String username) {
 		Userxx userxx = userxxMapper.getUserName(username);
 		return userxx;
+	}
+
+	//查询用户对应的角色
+	@Override
+	public Set<String> getRole(String username) {
+		return userxxMapper.getRole(username);
+	}
+
+	//查询用户对应角色的权限
+	@Override
+	public Set<String> getPermissions(String username) {
+		return userxxMapper.getPermissions(username);
 	}
 }

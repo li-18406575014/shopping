@@ -53,4 +53,12 @@
   <select id="getUserName" resultMap="BaseResultMap" >
     select * from userxx where name=#{username}
   </select>
+  <!-- 查询用户对应的角色 -->
+  <select id="getRole" resultType="String">
+    select roleName from userxx,role WHERE name=#{username} and js_id=role.id
+  </select>
+  <!-- 查询用户对应角色的权限 -->
+  <select id="getPermissions" resultType="String">
+    select jurisdiction from userxx,role,jurisdiction WHERE name=#{username} and js_id=role.id AND jurisdiction.id=role.jurisdictionId
+  </select>
 </mapper>

@@ -28,7 +28,7 @@
 
 <div class="span95">
     <table cellspacing="0" class="table table-head-bordered table-bordered">
-        <a href="<%=request.getContextPath() %>/CommodityAdd/addCommodity">
+        <a href="<%=request.getContextPath() %>/ItemAddController/goToSkip">
             <div class="s-btn">
                 <span style="color: black">新增</span>
             </div>
@@ -46,12 +46,12 @@
         <c:forEach items="${ban}" var="obj">
 	        <tr>
 	            <td>
-	                <img src="${obj.url }" alt="">
+	                <img src="<%=request.getContextPath() %>/serverimg/${obj.url}" alt="">
 	            </td>
 	            <td>${obj.name}</td>
 	            <td>${obj.jieshao}</td>
 	            <%-- <td>${obj.price}</td> --%>
-	            <td><a href="/ajax/ajax/LenadingReplace?id=${obj.id}&type=update">编辑</a> <a href="/ajax/ajax/LenadingReplace?id=${obj.id}&type=delete">删除</a></td>
+	            <td><a href="<%=request.getContextPath() %>/ItemAddController/selectId?id=${obj.id}&type=update">编辑</a> <a href="<%=request.getContextPath() %>/ItemAddController/delectId?id=${obj.id}&type=delete">删除</a></td>
 	        </tr>
         </c:forEach>
         

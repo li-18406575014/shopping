@@ -1,6 +1,8 @@
 package com.hyxy.entity;
 
-public class Userxx {
+import java.io.Serializable;
+
+public class Userxx implements Serializable{
     private Integer id;
 
     private String name;
