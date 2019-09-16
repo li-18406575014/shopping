@@ -15,9 +15,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 import com.hyxy.entity.Jieshao;
+import com.hyxy.es.ProductDao;
 import com.hyxy.service.JieshaoService;
+import com.hyxy.util.PageUtils;
 import com.hyxy.util.Upload;
 @Controller
 @RequestMapping("ItemAddController")
@@ -30,9 +31,25 @@ public class ItemAddController {
 
 	// 点击跳转到商品新增页面
 	@RequestMapping("skip")
-	public String skip(Map<String, Object> map2) {
+	public String skip(Map<String, Object> map2,String currentPage, String pageSize) {
 		List<Jieshao> list = JieshaoService.selectAll();
-		map2.put("ban", list);
+		Integer count = list.size();
+
+		// 调用分页工具类
+		PageUtils pageUtils = new PageUtils(currentPage, count, pageSize);
+		// 从分页工具类中得到开始记录数
+		Integer begin = pageUtils.getPageRecord();
+		// 从分页工具类中得到每页显示记录数
+		Integer number = pageUtils.getPageSize();
+		// 从分页工具类中得到前台页面分页模型（传入页面使用的html代码）
+		String page = pageUtils.getPage();
+		// 实现分页
+		List<Jieshao> list2 = JieshaoService.selectFenYe(begin, number);
+
+		map2.put("ban", list2);
+		map2.put("page", page);
+		map2.put("number", number);
+//		map2.put("ban", list);
 		return "goods-add";
 	}
 
@@ -94,4 +111,5 @@ public class ItemAddController {
 		JieshaoService.delectId(id);
 		return "forward:/ItemAddController/skip";
 	}
+	
 }

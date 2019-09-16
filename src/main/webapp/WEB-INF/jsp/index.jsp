@@ -72,12 +72,12 @@
         <ul>
             <li>
                 <a href="<%=request.getContextPath() %>/ItemAddController/skip" target="right">
-                    <span>商品新增</span>
+                    <span>banner</span>
                 </a>
             </li>
             <li>
-                <a href="<%=request.getContextPath() %>/BannerLeftController/paging" target="right">
-                    <span><span>商品分类新增</span></span>
+                <a href="<%=request.getContextPath() %>/CommodityController/skipCommodity" target="right">
+                    <span><span>商品新增</span></span>
                 </a>
             </li>
             <li>

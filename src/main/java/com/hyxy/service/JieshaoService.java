@@ -17,6 +17,8 @@ public interface JieshaoService {
 
 	void updataJS(Map<String, Object> map);
 
+	List<Jieshao> selectFenYe(Integer begin, Integer number);
+
 
 
 }

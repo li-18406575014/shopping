@@ -44,4 +44,8 @@
    <update id="updataJS" parameterType="com.hyxy.entity.Jieshao" >
     update jieshao set name = #{name},jieshao = #{title},url = #{imgname} where id = #{id}
   </update>
+  <!-- 实现分页 -->
+  <select id="selectFenYe" resultMap="BaseResultMap" >
+    select * from jieshao limit #{begin},#{number}
+  </select>
 </mapper>

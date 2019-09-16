@@ -25,15 +25,19 @@
         </c:if>
 
     </div>
-    <form action="<%=request.getContextPath() %>/BannerLeftController/updateLeftimgs" id="form_2" method="post" enctype="multipart/form-data">
+    <form action="<%=request.getContextPath() %>/CommodityController/updataId" id="form_2" method="post" enctype="multipart/form-data">
     <input type="text" id="file"  value="上传一个文件">
     <input type="text" id="imgname"  value="${banner.imgname }" name="imgname">
     <input type="text" id="id"  value="${banner.id }" name="id">
     <input type="file" class="jtt"  name="banner"  style="background: #880000;" >
     <div class="row">
         <div class="control-group">
-            <label class="control-label"> 	运动项目名称：</label>
-            <input type="text"  name="title" class="control-text" value="${banner.title }" >
+            <label class="control-label"> 	商品名称：</label>
+            <input type="text"  name="name" class="control-text" value="${banner.name }" >
+        </div>
+        <div class="control-group">
+            <label class="control-label"> 	商品价格：</label>
+            <input type="text"  name="price" class="control-text" value="${banner.price }" >
         </div>
     </div>
     <div class="span8">
@@ -42,8 +46,8 @@
         <span>添加</span>
     </div>
     
-    <div class="btn" id="modification">
-        <span>修改</span>
+    <div class="btn" id="submit">
+        <span><input type="submit" value="修改"></span>
     </div>
 </form>
 </div>
@@ -53,33 +57,17 @@ ${page }
     $(document).ready(function(){
     	 $('#submit').eq(0).click(function(){
                  $.ajax({
-                    url:'<%= request.getContextPath()%>/BannerLeftController/increases',
+                    url:'<%= request.getContextPath()%>/CommodityController/addCommodity',
                     type:"POST",
                     data:$('#form_2').serialize(),
                     dataType:"json",
                     success: function(data) {
                         if(data.message=="成功"){
-                            window.location.href="<%=request.getContextPath() %>/BannerLeftController/paging";
+                            window.location.href="<%=request.getContextPath() %>/CommodityController/skipCommodity";
                         }else{
                             $('#pos2').css({'display':'block'});
                             $('#pos1').addClass('dis-none');
                         }
-                    }
-                });
-        }) 
-        $('#modification').eq(0).click(function(){
-                 $.ajax({
-                    url:'<%= request.getContextPath()%>/BannerLeftController/updateLeftimgs',
-                    type:"POST",
-                    data:$('#form_2').serialize(),
-                    dataType:"json",
-                    success: function(data) {
-                        if(data.message=="成功"){
-                            window.location.href="<%=request.getContextPath() %>/BannerLeftController/paging";
-                        }else{
-                            $('#pos2').css({'display':'block'});
-                            $('#pos1').addClass('dis-none');
-                    }
                     }
                 });
         }) 
@@ -99,7 +87,7 @@ ${page }
             
             var formData = new FormData($("#form_2")[0]);
             $.ajax({
-               url : '<%= request.getContextPath()%>/BannerLeftController/preview',
+               url : '<%= request.getContextPath()%>/CommodityController/imgPreview',
                type : "POST",
                data : formData,
                dataType : "json",

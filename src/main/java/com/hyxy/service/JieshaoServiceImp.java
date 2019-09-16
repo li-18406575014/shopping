@@ -35,5 +35,10 @@ public class JieshaoServiceImp implements JieshaoService {
 	public void updataJS(Map<String, Object> map) {
 		JieshaoMapper.updataJS(map);
 	}
+	@Override
+	public List<Jieshao> selectFenYe(Integer begin, Integer number) {
+		List<Jieshao> list = JieshaoMapper.selectFenYe(begin,number);
+		return list;
+	}
 
 }

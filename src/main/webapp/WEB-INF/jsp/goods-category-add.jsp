@@ -28,16 +28,17 @@
 
 <div class="span95">
     <table cellspacing="0" class="table table-head-bordered table-bordered">
-        <a href="<%=request.getContextPath() %>/BannerLeftController/increase">
+        <a href="<%=request.getContextPath() %>/CommodityController/skipIcreased">
             <div class="s-btn">
                 <span style="color: black">新增</span>
             </div>
         </a>
         <thead>
         <tr style="">
-            <th>运动图片</th>
-            <th>运动项目名称</th>
-            <th>地址</th>
+            <th>商品图片</th>
+            <th>商品名称</th>
+            <th>商品价格</th>
+            <th>图片地址</th>
             <th>操作</th>
         </tr>
         </thead>
@@ -47,9 +48,10 @@
 	            <td>
 	                <img src="<%=request.getContextPath() %>/serverimg/${obj.imgname}" alt="">
 	            </td>
-	            <td>${obj.title}</td>
-	            <td>${obj.url}</td>
-	            <td><a href="<%=request.getContextPath() %>/BannerLeftController/updateLeftimg?id=${obj.id}&type=update">编辑</a> <a href="<%=request.getContextPath() %>/BannerLeftController/delectLeftimg?id=${obj.id}&type=delete">删除</a><a href="<%=request.getContextPath() %>/BannerLeftController/downloadImg?id=${obj.id}&type=xiazai&filename=${obj.imgname}&di=${obj.url}">下载</a></td>
+	            <td>${obj.name}</td>
+	            <td>${obj.price}</td>
+	            <td>${obj.imgname}</td>
+	            <td><a href="<%=request.getContextPath() %>/CommodityController/selectId?id=${obj.id}&type=update">编辑</a> <a href="<%=request.getContextPath() %>/CommodityController/delectId?id=${obj.id}&type=delete">删除</a></td>
 	        </tr>
         </c:forEach>
         </tbody>

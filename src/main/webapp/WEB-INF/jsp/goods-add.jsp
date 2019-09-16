@@ -84,7 +84,7 @@ function page(i){
 //获取到下拉框选中的值
 var pageSize = $("#pageSize").find("option:selected").text()
 //跳转路径再次查询分页数据
-window.location.href="/ajax/ajax/LeadingOperation?currentPage="+i+"&pageSize="+pageSize+" "
+window.location.href="<%=request.getContextPath()%>/ItemAddController/skip?currentPage="+i+"&pageSize="+pageSize+" "
 }
 </script>
 </html>
